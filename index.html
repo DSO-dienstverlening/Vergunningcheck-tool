@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Vergunningcheck vijfdeling</title>
+    <title>Analyse – 2/2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,55 +17,129 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 140px;
         }
         h1 {
             color: #003366;
+            text-align: center;
         }
-        p {
-            font-size: 1.1em;
+        .question {
+            margin-bottom: 30px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .example {
+            margin: 8px 0;
+            padding: 6px 12px;
+            border-left: 4px solid #4CAF50;
+            background-color: #f0fdf4;
+            font-style: italic;
+        }
+        .tooltip {
+            margin-left: 8px;
+            cursor: help;
+        }
+        .options label {
+            display: block;
+            margin: 4px 0;
         }
         .btn {
             margin-top: 30px;
-            display: inline-block;
+            display: block;
+            width: fit-content;
             padding: 12px 24px;
             font-size: 1em;
             background-color: #003366;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            transition: background-color 0.3s;
         }
         .btn:hover {
             background-color: #00509e;
         }
-		.logo {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    width: 140px;
-		}
     </style>
 </head>
 <body>
+    <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
     <div class="container">
-	<img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
-        <h1>Symptomen</h1>
-        <p>Onderstaande signalen kunnen een aanleiding zijn om de vergunningcheck te analyseren:</p>
-<ul style="text-align: left; line-height: 1.6;">
-    <li>Er zijn signalen dat er activiteiten plaatsvinden zonder melding/vergunning;</li>
-    <li>Krijgen <strong>bevoegd gezagen</strong> vragen binnen van gebruikers die vastlopen bij de vergunningcheck of het loket helemaal niet weten te vinden;</li>
-    <li>Er komen onjuiste aanvragen, meldingen en informatieplichten binnen;</li>
-    <li>Er komen aanvragen, meldingen en informatieplichten niet binnen, terwijl je die wel had verwacht;</li>
-    <li>Er komen signalen binnen dat vragenbomen te ingewikkeld en/of te lang zijn;</li>
-    <li>Er is geen inzicht over het huidige functioneren van de beslisboom;</li>
-    <li>Wanneer u signaleert dat vragenbomen niet worden afgerond;</li>
-    <li>Vanuit uw dienstverleningsvisie wilt u inzetten op het digitaal ontsluiten van vragenbomen;</li>
-    <li>Wordt er prioriteit aangegeven (door het management/organisatie)? Na doorlopen van analyse kan er prioriteit voor worden gevraagd.</li>
-    <li>U heeft de bruidsschat recentelijk in beheer genomen en wilt aan de slag gaan met het verbeteren van vergunningchecks.</li>
-</ul>
+        <h1>Analyse – 2/2 </h1>
+        <form action="analyse2.html">
 
-<a class="btn" href="voorvragen1.html">Start het vooronderzoek</a>
+            <div class="question">
+                <p>7. In welke mate worden er moeilijke vaktermen gebruikt in de vragen, zonder dat wordt uitgelegd wat ze betekenen?
+                    <span class="tooltip" title="In de communicatie met elkaar gebruiken deskundigen nogal eens woorden die vallen onder vakjargon, woorden die voor een specifiek vakgebied een specifieke betekenis hebben, maar die door mensen buiten het vakgebied niet eenvoudig begrepen worden. Deze woorden wil je vermijden of, als dat niet kan, voorzien van een toelichting.">ℹ️</span>
+                </p>
+                <div class="example">Voorbeeld: "Is sprake van een functiewijziging van het bouwwerk?" Maar het wordt niet uitgelegd wat "functiewijziging" precies betekent. Veel mensen weten dan niet of hun situatie daaronder valt.
+.</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag1" value="zelden"> Zelden tot nooit</label>
+                    <label><input type="radio" name="vraag1" value="soms"> Soms/af en toe</label>
+                    <label><input type="radio" name="vraag1" value="vaak"> Vaak/regelmatig</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>8. In welke mate is Geo gekoppeld aan deze beslisboom?
+                    <span class="tooltip" title="Door geo te koppelen kunnen beslisbomen specifieker worden gemaakt en zouden vragen kunnen vervallen waardoor de beslisboom kleiner wordt.">ℹ️</span>
+                </p>
+                <div class="example">Voorbeeld: Het is o.g.v. de bruidsschat-regels verboden om zonder vergunning wijzigingen aan de brengen aan monumenten. Door aan de plankant geo toe te voegen aan de annotaties, kun je voorkomen dat vragen worden gesteld die betrekking hebben op de locatie waar de activiteit plaatsvindt.
+</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag3" value="zelden"> Zelden tot nooit</label>
+                    <label><input type="radio" name="vraag3" value="soms"> Soms/af en toe</label>
+                    <label><input type="radio" name="vraag3" value="vaak"> Vaak/regelmatig</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>9. In hoeverre worden er dezelfde woorden gebruikt die bij andere overheden iets anders betekenen?
+				<span class="tooltip" title="Termen kunnen verschillende betekenissen hebben bij de verschillende bevoegd gezagen. 
+				Theoretisch kader: Artikel 6 van de Wet digitale overheid (Wdo) verplicht overheden om te werken met open en gestandaardiseerde digitale communicatiemethoden. Dit bevordert interoperabiliteit, wat betekent dat verschillende overheidsinstanties effectief kunnen communiceren en gegevens kunnen uitwisselen. Dit moet ervoor zorgen dat burgers niet telkens opnieuw informatie hoeven in te voeren bij verschillende overheden..">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: Het woord "watergang". Een gemeente bedoelt hiermee vaak een sloot in een woonwijk waarvoor zij het onderhoud doet. Een waterschap ziet een watergang als een formeel waterlichaam met regels, bijvoorbeeld over lozen of baggeren.
+</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag4" value="zelden"> Zelden tot nooit</label>
+                    <label><input type="radio" name="vraag4" value="soms"> Soms/af en toe</label>
+                    <label><input type="radio" name="vraag4" value="vaak"> Vaak/regelmatig</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>10. In hoeverre worden door verschillende overheden dezelfde vragen gesteld?
+				<span class="tooltip" title="Het stellen van dubbele of vergelijkbare vragen leidt tot verwarring en ergernis bij gebruikers. Er ontstaat twijfel of ze een vraag wel goed begrijpen en de kans bestaat dat tegenstrijdige antwoorden worden gegeven op dezelfde vraag. Op dit moment is het binnen de vergunningcheck technisch (nog) niet mogelijk om informatie vanuit de ene vergunningcheck van de ene overheid mee te nemen naar de andere vergunningcheck van de andere overheid. Dit betekent dat het in sommige gevallen onvermijdelijk is dat bepaalde vragen meer dan een keer worden gesteld.">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: De vraag “Is uw gebouw een monument?” De gemeente stelt deze vraag, omdat je voor een gemeentelijk monument een vergunning nodig kunt hebben. De provincie stelt dezelfde vraag, maar dan voor een provinciaal monument. De Rijksoverheid stelt hem ook, voor rijksmonumenten.
+
+</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag5" value="zelden"> Zelden tot nooit</label>
+                    <label><input type="radio" name="vraag5" value="soms"> Soms/af en toe</label>
+                    <label><input type="radio" name="vraag5" value="vaak"> Vaak/regelmatig</label>
+                </div>
+            </div>
+
+				<div class="question">
+                <p>11. In welke mate worden er vragen met open waarden gesteld die ook als multiple-choice vragen zouden kunnen worden gesteld?
+				<span class="tooltip" title="Beperkte invoermogelijkheden voorkomen bijvoorbeeld dat er tikfouten ontstaan of ongeldige antwoorden komen. Daarnaast wordt de cognitieve belasting beperkt omdat de respondent niet zelf een antwoord hoeft te genereren, maar alleen iets hoeft te herkennen (cognitive load theory, Sweller 1988).">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: (open waarde): “Hoe hoog wordt het bouwwerk?” → gebruiker moet zelf een getal invullen, zoals “3,2 meter”. Beter als multiple-choice: In plaats daarvan zou je kunnen vragen: “Hoe hoog wordt het bouwwerk?”.
+</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag5" value="zelden"> Zelden tot nooit</label>
+                    <label><input type="radio" name="vraag5" value="soms"> Soms/af en toe</label>
+                    <label><input type="radio" name="vraag5" value="vaak"> Vaak/regelmatig</label>
+                </div>
+            </div>
+
+			<a class="btn" href="analyse1.html">Vorige</a> <button type="submit" class="btn">Resultaten</button>
+        </form>
     </div>
 </body>
 </html>
