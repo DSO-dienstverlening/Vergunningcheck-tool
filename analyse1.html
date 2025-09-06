@@ -49,16 +49,16 @@
             display: block;
             margin: 4px 0;
         }
-        .btn {
+        btn {
             margin-top: 30px;
-            display: block;
-            width: fit-content;
+            display: inline-block;
             padding: 12px 24px;
             font-size: 1em;
             background-color: #003366;
             color: white;
             text-decoration: none;
             border-radius: 6px;
+            transition: background-color 0.3s;
         }
         .btn:hover {
             background-color: #00509e;
@@ -150,7 +150,8 @@ Theoretisch kader: uitgaande van het principe van de weg van de minste weerstand
                 </div>
             </div>
 
-            <button type="submit" class="btn">Volgende</button>
+			<a class="btn" href="resultaten">Terug</a>
+			<a class="btn" href="resultaten.html">Volgenda</a>
         </form>
     </div>
 </body>
