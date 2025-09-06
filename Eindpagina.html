@@ -9,6 +9,7 @@
             background-color: #f8f9fa;
             margin: 0;
             padding: 40px;
+            overflow: hidden;
         }
         .container {
             max-width: 800px;
@@ -19,24 +20,21 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-align: center;
         }
-		
-		.intro p {
-    font-size: 1em;
-    text-align: left;
-    margin-bottom: 16px;
-}
-.intro strong {
-    font-size: 1.1em;
-}
-
-		
+        .intro p {
+            font-size: 1em;
+            text-align: left;
+            margin-bottom: 16px;
+        }
+        .intro strong {
+            font-size: 1.1em;
+        }
         h1 {
             color: #003366;
         }
         p {
             font-size: 1.1em;
         }
-       .btn {
+        .btn {
             margin-top: 30px;
             display: inline-block;
             padding: 12px 24px;
@@ -46,6 +44,7 @@
             text-decoration: none;
             border-radius: 6px;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         .btn:hover {
             background-color: #00509e;
@@ -56,26 +55,104 @@
             right: 40px;
             width: 140px;
         }
+        canvas {
+            background: #000;
+            display: block;
+            margin: 40px auto;
+        }
     </style>
 </head>
 <body>
     <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
-    <div class="container">
+    <div class="container" id="end-container">
         <h1>Aanpakkersrichtlijn voor beslisbomen</h1>
-		    
-		<p><strong> Bedankt voor het doorlopen van de aanpakkersrichtlijn! </strong></p>
-
-    
-	<div class="intro">
-	
-	<p>
-        Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!
-
-    </p>
-  
-</div>
-		<a class="btn" href="resultatenanalyse.html">Terug</a>
-        <a class="btn" href="">Have some fun!</a>
+        <p><strong>Bedankt voor het doorlopen van de aanpakkersrichtlijn!</strong></p>
+        <div class="intro">
+            <p>Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!</p>
+        </div>
+        <a class="btn" href="resultatenanalyse.html">Terug</a>
+        <a class="btn" onclick="startSnake()">Have some fun!</a>
     </div>
+
+    <canvas id="snakeGame" width="400" height="400" style="display:none;"></canvas>
+
+    <script>
+        function startSnake() {
+            document.getElementById('end-container').style.display = 'none';
+            const canvas = document.getElementById('snakeGame');
+            canvas.style.display = 'block';
+            const ctx = canvas.getContext("2d");
+
+            const box = 20;
+            let snake = [];
+            snake[0] = { x: 9 * box, y: 10 * box };
+            let food = {
+                x: Math.floor(Math.random() * 19) * box,
+                y: Math.floor(Math.random() * 19) * box
+            };
+            let score = 0;
+            let d;
+
+            document.addEventListener("keydown", direction);
+
+            function direction(event) {
+                if (event.key === "ArrowLeft" && d !== "RIGHT") d = "LEFT";
+                else if (event.key === "ArrowUp" && d !== "DOWN") d = "UP";
+                else if (event.key === "ArrowRight" && d !== "LEFT") d = "RIGHT";
+                else if (event.key === "ArrowDown" && d !== "UP") d = "DOWN";
+            }
+
+            function draw() {
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, 400, 400);
+
+                for (let i = 0; i < snake.length; i++) {
+                    ctx.fillStyle = i === 0 ? "lime" : "white";
+                    ctx.fillRect(snake[i].x, snake[i].y, box, box);
+                }
+
+                ctx.fillStyle = "red";
+                ctx.fillRect(food.x, food.y, box, box);
+
+                let snakeX = snake[0].x;
+                let snakeY = snake[0].y;
+
+                if (d === "LEFT") snakeX -= box;
+                if (d === "UP") snakeY -= box;
+                if (d === "RIGHT") snakeX += box;
+                if (d === "DOWN") snakeY += box;
+
+                if (snakeX === food.x && snakeY === food.y) {
+                    score++;
+                    food = {
+                        x: Math.floor(Math.random() * 19) * box,
+                        y: Math.floor(Math.random() * 19) * box
+                    };
+                } else {
+                    snake.pop();
+                }
+
+                const newHead = { x: snakeX, y: snakeY };
+
+                if (
+                    snakeX < 0 || snakeY < 0 ||
+                    snakeX >= 400 || snakeY >= 400 ||
+                    collision(newHead, snake)
+                ) {
+                    clearInterval(game);
+                    alert("Game Over! Score: " + score);
+                    location.reload();
+                }
+
+                snake.unshift(newHead);
+            }
+
+            function collision(head, array) {
+                return array.some(segment => head.x === segment.x && head.y === segment.y);
+            }
+
+            const game = setInterval(draw, 150);
+        }
+    </script>
 </body>
 </html>
