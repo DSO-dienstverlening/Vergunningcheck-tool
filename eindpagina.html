@@ -9,6 +9,7 @@
             background-color: #f8f9fa;
             margin: 0;
             padding: 40px;
+            overflow: hidden;
         }
 
         .container {
@@ -52,6 +53,8 @@
             border-radius: 6px;
             transition: background-color 0.3s;
             cursor: pointer;
+            z-index: 2;
+            position: relative;
         }
 
         .btn:hover {
@@ -66,14 +69,14 @@
             z-index: 2;
         }
 
-        canvas {
+        #snakeCanvas {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 999;
             width: 100vw;
             height: 100vh;
+            z-index: 10;
         }
 
         .score-popup {
@@ -87,7 +90,7 @@
             border-radius: 10px;
             text-align: center;
             display: none;
-            z-index: 1000;
+            z-index: 20;
         }
     </style>
 </head>
@@ -144,8 +147,16 @@
             document.addEventListener("keydown", setDirection);
             canvas.addEventListener("touchstart", handleTouchStart, false);
             canvas.addEventListener("touchend", handleTouchEnd, false);
+            canvas.addEventListener("click", handleCanvasClick);
 
             game = setInterval(draw, 150);
+        }
+
+        function handleCanvasClick() {
+            if (direction === "RIGHT") direction = "DOWN";
+            else if (direction === "DOWN") direction = "LEFT";
+            else if (direction === "LEFT") direction = "UP";
+            else if (direction === "UP") direction = "RIGHT";
         }
 
         function setDirection(event) {
