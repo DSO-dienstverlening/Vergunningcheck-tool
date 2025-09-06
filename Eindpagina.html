@@ -9,8 +9,8 @@
             background-color: #f8f9fa;
             margin: 0;
             padding: 40px;
-            overflow: hidden;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -19,21 +19,28 @@
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
+
         .intro p {
             font-size: 1em;
             text-align: left;
             margin-bottom: 16px;
         }
+
         .intro strong {
             font-size: 1.1em;
         }
+
         h1 {
             color: #003366;
         }
+
         p {
             font-size: 1.1em;
         }
+
         .btn {
             margin-top: 30px;
             display: inline-block;
@@ -46,112 +53,158 @@
             transition: background-color 0.3s;
             cursor: pointer;
         }
+
         .btn:hover {
             background-color: #00509e;
         }
+
         .logo {
             position: absolute;
             top: 20px;
             right: 40px;
             width: 140px;
+            z-index: 2;
         }
+
         canvas {
-            background: #000;
-            display: block;
-            margin: 40px auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
         }
+
+        .score-popup {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid #003366;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+
     </style>
 </head>
 <body>
     <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
-    <div class="container" id="end-container">
+
+    <div class="container">
         <h1>Aanpakkersrichtlijn voor beslisbomen</h1>
         <p><strong>Bedankt voor het doorlopen van de aanpakkersrichtlijn!</strong></p>
+
         <div class="intro">
             <p>Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!</p>
         </div>
+
         <a class="btn" href="resultatenanalyse.html">Terug</a>
         <a class="btn" onclick="startSnake()">Have some fun!</a>
     </div>
 
-    <canvas id="snakeGame" width="400" height="400" style="display:none;"></canvas>
+    <canvas id="snakeCanvas"></canvas>
+
+    <div class="score-popup" id="scorePopup">
+        <h2>Game Over</h2>
+        <p id="scoreText"></p>
+        <a class="btn" onclick="resetSnake()">Speel opnieuw</a>
+    </div>
 
     <script>
+        let canvas = document.getElementById('snakeCanvas');
+        let ctx = canvas.getContext('2d');
+        let box = 20;
+        let snake = [];
+        let food;
+        let direction;
+        let game;
+        let score = 0;
+
         function startSnake() {
-            document.getElementById('end-container').style.display = 'none';
-            const canvas = document.getElementById('snakeGame');
-            canvas.style.display = 'block';
-            const ctx = canvas.getContext("2d");
-
-            const box = 20;
-            let snake = [];
-            snake[0] = { x: 9 * box, y: 10 * box };
-            let food = {
-                x: Math.floor(Math.random() * 19) * box,
-                y: Math.floor(Math.random() * 19) * box
+            // Setup canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            direction = null;
+            snake = [{ x: 10 * box, y: 10 * box }];
+            food = {
+                x: Math.floor(Math.random() * (canvas.width / box)) * box,
+                y: Math.floor(Math.random() * (canvas.height / box)) * box
             };
-            let score = 0;
-            let d;
+            score = 0;
+            document.addEventListener("keydown", setDirection);
+            game = setInterval(draw, 150);
+        }
 
-            document.addEventListener("keydown", direction);
+        function setDirection(event) {
+            if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+            else if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+            else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+            else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+        }
 
-            function direction(event) {
-                if (event.key === "ArrowLeft" && d !== "RIGHT") d = "LEFT";
-                else if (event.key === "ArrowUp" && d !== "DOWN") d = "UP";
-                else if (event.key === "ArrowRight" && d !== "LEFT") d = "RIGHT";
-                else if (event.key === "ArrowDown" && d !== "UP") d = "DOWN";
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Snake
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = i === 0 ? "#003366" : "#0077cc";
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
             }
 
-            function draw() {
-                ctx.fillStyle = "black";
-                ctx.fillRect(0, 0, 400, 400);
+            // Food
+            ctx.fillStyle = "orange";
+            ctx.fillRect(food.x, food.y, box, box);
 
-                for (let i = 0; i < snake.length; i++) {
-                    ctx.fillStyle = i === 0 ? "lime" : "white";
-                    ctx.fillRect(snake[i].x, snake[i].y, box, box);
-                }
+            // Movement
+            let headX = snake[0].x;
+            let headY = snake[0].y;
 
-                ctx.fillStyle = "red";
-                ctx.fillRect(food.x, food.y, box, box);
+            if (direction === "LEFT") headX -= box;
+            if (direction === "UP") headY -= box;
+            if (direction === "RIGHT") headX += box;
+            if (direction === "DOWN") headY += box;
 
-                let snakeX = snake[0].x;
-                let snakeY = snake[0].y;
-
-                if (d === "LEFT") snakeX -= box;
-                if (d === "UP") snakeY -= box;
-                if (d === "RIGHT") snakeX += box;
-                if (d === "DOWN") snakeY += box;
-
-                if (snakeX === food.x && snakeY === food.y) {
-                    score++;
-                    food = {
-                        x: Math.floor(Math.random() * 19) * box,
-                        y: Math.floor(Math.random() * 19) * box
-                    };
-                } else {
-                    snake.pop();
-                }
-
-                const newHead = { x: snakeX, y: snakeY };
-
-                if (
-                    snakeX < 0 || snakeY < 0 ||
-                    snakeX >= 400 || snakeY >= 400 ||
-                    collision(newHead, snake)
-                ) {
-                    clearInterval(game);
-                    alert("Game Over! Score: " + score);
-                    location.reload();
-                }
-
-                snake.unshift(newHead);
+            // Eat
+            if (headX === food.x && headY === food.y) {
+                score++;
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width / box)) * box,
+                    y: Math.floor(Math.random() * (canvas.height / box)) * box
+                };
+            } else {
+                snake.pop();
             }
 
-            function collision(head, array) {
-                return array.some(segment => head.x === segment.x && head.y === segment.y);
+            let newHead = { x: headX, y: headY };
+
+            // Collision
+            if (
+                headX < 0 || headY < 0 ||
+                headX >= canvas.width || headY >= canvas.height ||
+                collision(newHead, snake)
+            ) {
+                clearInterval(game);
+                document.getElementById('scoreText').innerText = "Je score: " + score;
+                document.getElementById('scorePopup').style.display = 'block';
+                return;
             }
 
-            const game = setInterval(draw, 150);
+            snake.unshift(newHead);
+        }
+
+        function collision(head, array) {
+            return array.some(part => part.x === head.x && part.y === head.y);
+        }
+
+        function resetSnake() {
+            document.getElementById('scorePopup').style.display = 'none';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            startSnake();
         }
     </script>
 </body>
