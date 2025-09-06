@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Vooronderzoek </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+		.logo {
+			position: absolute;
+			top: 20px;
+			right: 40px;
+			width: 140px;
+		}	
+        h1 {
+            color: #003366;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .question label {
+            font-weight: bold;
+        }
+        .tooltip {
+            margin-left: 10px;
+            cursor: help;
+            color: #888;
+        }
+        .options label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        .btn {
+            margin-top: 30px;
+            display: block;
+            width: fit-content;
+            padding: 12px 24px;
+            font-size: 1em;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #00509e;
+        }
+    </style>
+</head>
+<body>
+	<img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
+    <div class="container">
+        <h1>Vooronderzoek </h1>
+        <form action="voorvragen2.html">
+            
+        <div class="question">
+            <label>Is de uitkomst van de vergunningcheck altijd 'neem contact op met uw gemeente?
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag1" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag1" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Als de inschatting is, ook na verbeteringen, dat de beslisboom niet binnen 20 minuten doorlopen kan worden
+                <span class="tooltip" title="Respondenten raken vermoeid of gefrustreerd naarmate een vragenlijst langer duurt. De foutmarge neemt exponentieel toe waarmee de uitkomst van de vergunningcheck als minder betrouwbaar mag worden beschouwd. Theorie: Survey fatigue & Theorie van respondent burden (responsbelasting)">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag2" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag2" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Betreft het een beslisboom voor een activiteit die in potentie zeer beperkt wordt doorlopen? 
+                <span class="tooltip" title="Kader laag-hoog volume (Stipdonk, 2025)">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag3" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag3" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Heeft u voor een activiteit veel juridische vragen die niet toepasbaar gemaakt kunnen worden?  
+                <span class="tooltip" title="Open vs gesloten normen">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag4" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag4" value="nee"> Nee</label>
+            </div>
+        </div>
+    <div class="question">
+            <label>Is een beslisboom nodig voor deze activiteit of kunt u ook op een andere manier een kort en duidelijk advies geven? (vb. KCC/servicecentrum)
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag5" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag5" value="nee"> Nee</label>
+            </div>
+        </div>
+			
+        <div class="question">
+            <label>Moeten er complexe berekeningen worden uitgevoerd die makkelijk kunnen leiden tot vragen en/of fouten? 
+                <span class="tooltip" title="Cognitive Load Theory (Sweller, 1988)">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag6" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag6" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Wilt u vanuit uw dienstverleningsvisie inzetten op het digitaal ontsluiten van juridische regels?
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag7" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag7" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Moeten er, naast de voorliggende beslisboom, vaak meerdere beslisbomen worden doorlopen om te komen tot de juiste uitkomst van een initiatief?
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag8" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag8" value="nee"> Nee</label>
+            </div>
+        </div>
+		
+		<div class="question">
+            <label>Is een beslisboom nodig voor deze activiteit of kunt u ook op een andere manier een kort en duidelijk advies geven? (vb. KCC/servicecentrum)
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag5" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag5" value="nee"> Nee</label>
+            </div>
+        </div>
+			
+        <div class="question">
+            <label>Moeten er complexe berekeningen worden uitgevoerd die makkelijk kunnen leiden tot vragen en/of fouten? 
+                <span class="tooltip" title="Cognitive Load Theory (Sweller, 1988)">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag6" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag6" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Wilt u vanuit uw dienstverleningsvisie inzetten op het digitaal ontsluiten van juridische regels?
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag7" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag7" value="nee"> Nee</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <label>Moeten er, naast de voorliggende beslisboom, vaak meerdere beslisbomen worden doorlopen om te komen tot de juiste uitkomst van een initiatief?
+                <span class="tooltip" title="Geen toelichting beschikbaar.">ℹ️</span>
+            </label>
+            <div class="options">
+                <label><input type="radio" name="vraag8" value="ja"> Ja</label>
+                <label><input type="radio" name="vraag8" value="nee"> Nee</label>
+            </div>
+        </div>
+           
+			<a class="btn" href="symptomen.html">Terug</a>
+			<a class="btn" href="resultaten.html">Resulten</a>
+        </form>
+    </div>
+</body>
+</html>
