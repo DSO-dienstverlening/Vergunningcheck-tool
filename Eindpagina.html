@@ -147,8 +147,7 @@
     }
 
     function draw() {
-        ctx.fillStyle = "#f8f9fa";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         for (let i = 0; i < snake.length; i++) {
             ctx.fillStyle = i === 0 ? "#003366" : "#00509e";
