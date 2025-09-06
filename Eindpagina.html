@@ -1,120 +1,122 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>Aanpakkersrichtlijn voor beslisbomen</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 40px;
-        }
+  <meta charset="UTF-8" />
+  <title>Aanpakkersrichtlijn voor beslisbomen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 40px;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        .intro p {
-            font-size: 1em;
-            text-align: left;
-            margin-bottom: 16px;
-        }
+    .intro p {
+      font-size: 1em;
+      text-align: left;
+      margin-bottom: 16px;
+    }
 
-        .intro strong {
-            font-size: 1.1em;
-        }
+    .intro strong {
+      font-size: 1.1em;
+    }
 
-        h1 {
-            color: #003366;
-        }
+    h1 {
+      color: #003366;
+    }
 
-        p {
-            font-size: 1.1em;
-        }
+    p {
+      font-size: 1.1em;
+    }
 
-        .btn {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 1em;
-            background-color: #003366;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
+    .btn {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #003366;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
 
-        .btn:hover {
-            background-color: #00509e;
-        }
+    .btn:hover {
+      background-color: #00509e;
+    }
 
-        .logo {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 140px;
-            z-index: 2;
-        }
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      width: 140px;
+      z-index: 2;
+    }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999;
-            width: 100vw;
-            height: 100vh;
-        }
+    canvas {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100vw;
+      height: 100vh;
+    }
 
-        .score-popup {
-            position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 2px solid #003366;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
-            z-index: 1000;
-        }
-
-    </style>
+    .score-popup {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #003366;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      display: none;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
-    <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
+  <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo" />
 
-    <div class="container">
-        <h1>Aanpakkersrichtlijn voor beslisbomen</h1>
-        <p><strong>Bedankt voor het doorlopen van de aanpakkersrichtlijn!</strong></p>
+  <div class="container">
+    <h1>Aanpakkersrichtlijn voor beslisbomen</h1>
+    <p><strong>Bedankt voor het doorlopen van de aanpakkersrichtlijn!</strong></p>
 
-        <div class="intro">
-            <p>Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!</p>
-        </div>
-
-        <a class="btn" href="resultatenanalyse.html">Terug</a>
-        <a class="btn" onclick="startSnake()">Have some fun!</a>
+    <div class="intro">
+      <p>
+        Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!
+      </p>
     </div>
 
-   <canvas id="snakeCanvas"></canvas>
+    <a class="btn" href="resultatenanalyse.html">Terug</a>
+    <a class="btn" onclick="startSnake()">Have some fun!</a>
+  </div>
 
-<div class="score-popup" id="scorePopup">
+  <canvas id="snakeCanvas"></canvas>
+
+  <div class="score-popup" id="scorePopup">
     <h2>Game Over</h2>
     <p id="scoreText"></p>
     <a class="btn" onclick="resetSnake()">Speel opnieuw</a>
-</div>
+  </div>
 
-<script>
+  <script>
     const canvas = document.getElementById("snakeCanvas");
     const ctx = canvas.getContext("2d");
     const box = 20;
@@ -123,124 +125,77 @@
     let food;
     let score = 0;
     let game;
-    let startX, startY;
+    let touchStartX = 0;
+    let touchStartY = 0;
 
     function startSnake() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        snake = [{ x: 10 * box, y: 10 * box }];
-        direction = "RIGHT";
-        score = 0;
-        food = spawnFood();
-        document.addEventListener("keydown", setDirection);
-        canvas.addEventListener("click", handleMouseClick);
-        canvas.addEventListener("touchstart", handleTouchStart, false);
-        canvas.addEventListener("touchend", handleTouchEnd, false);
-        game = setInterval(draw, 150);
+      canvas.style.display = "block";
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      direction = "RIGHT";
+      score = 0;
+      snake = [{ x: 10 * box, y: 10 * box }];
+      food = spawnFood();
+
+      document.addEventListener("keydown", setDirection);
+      canvas.addEventListener("touchstart", handleTouchStart, false);
+      canvas.addEventListener("touchend", handleTouchEnd, false);
+      canvas.addEventListener("click", handleMouseClick);
+
+      game = setInterval(draw, 150);
     }
 
     function spawnFood() {
-        return {
-            x: Math.floor(Math.random() * (canvas.width / box)) * box,
-            y: Math.floor(Math.random() * (canvas.height / box)) * box
-        };
+      return {
+        x: Math.floor(Math.random() * (canvas.width / box)) * box,
+        y: Math.floor(Math.random() * (canvas.height / box)) * box
+      };
     }
 
     function setDirection(event) {
-        const key = event.key;
-        if (key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-        else if (key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-        else if (key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-        else if (key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+      if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+      else if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+      else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+      else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+    }
+
+    function handleTouchStart(event) {
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }
+
+    function handleTouchEnd(event) {
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0 && direction !== "LEFT") direction = "RIGHT";
+        else if (dx < 0 && direction !== "RIGHT") direction = "LEFT";
+      } else {
+        if (dy > 0 && direction !== "UP") direction = "DOWN";
+        else if (dy < 0 && direction !== "DOWN") direction = "UP";
+      }
     }
 
     function handleMouseClick(event) {
-        const head = snake[0];
-        const clickX = event.clientX;
-        const clickY = event.clientY;
-        const centerX = head.x + box / 2;
-        const centerY = head.y + box / 2;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const dx = event.clientX - centerX;
+      const dy = event.clientY - centerY;
 
-        const dx = clickX - centerX;
-        const dy = clickY - centerY;
-
-        if (Math.abs(dx) > Math.abs(dy)) {
-            if (dx < 0 && direction !== "RIGHT") direction = "LEFT";
-            else if (dx > 0 && direction !== "LEFT") direction = "RIGHT";
-        } else {
-            if (dy < 0 && direction !== "DOWN") direction = "UP";
-            else if (dy > 0 && direction !== "UP") direction = "DOWN";
-        }
-    }
-
-    function handleTouchStart(e) {
-        const touch = e.touches[0];
-        startX = touch.clientX;
-        startY = touch.clientY;
-    }
-
-    function handleTouchEnd(e) {
-        const touch = e.changedTouches[0];
-        const endX = touch.clientX;
-        const endY = touch.clientY;
-        const dx = endX - startX;
-        const dy = endY - startY;
-
-        if (Math.abs(dx) > Math.abs(dy)) {
-            if (dx < -10 && direction !== "RIGHT") direction = "LEFT";
-            else if (dx > 10 && direction !== "LEFT") direction = "RIGHT";
-        } else {
-            if (dy < -10 && direction !== "DOWN") direction = "UP";
-            else if (dy > 10 && direction !== "UP") direction = "DOWN";
-        }
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0 && direction !== "LEFT") direction = "RIGHT";
+        else if (dx < 0 && direction !== "RIGHT") direction = "LEFT";
+      } else {
+        if (dy > 0 && direction !== "UP") direction = "DOWN";
+        else if (dy < 0 && direction !== "DOWN") direction = "UP";
+      }
     }
 
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < snake.length; i++) {
-            ctx.fillStyle = i === 0 ? "#003366" : "#00509e";
-            ctx.fillRect(snake[i].x, snake[i].y, box, box);
-        }
-
-        ctx.fillStyle = "orange";
-        ctx.fillRect(food.x, food.y, box, box);
-
-        let headX = snake[0].x;
-        let headY = snake[0].y;
-
-        if (direction === "LEFT") headX -= box;
-        else if (direction === "UP") headY -= box;
-        else if (direction === "RIGHT") headX += box;
-        else if (direction === "DOWN") headY += box;
-
-        if (
-            headX < 0 || headY < 0 ||
-            headX >= canvas.width || headY >= canvas.height ||
-            snake.some((segment, index) => index !== 0 && segment.x === headX && segment.y === headY)
-        ) {
-            clearInterval(game);
-            document.getElementById('scoreText').innerText = "Je score: " + score;
-            document.getElementById('scorePopup').style.display = 'block';
-            return;
-        }
-
-        const newHead = { x: headX, y: headY };
-
-        if (headX === food.x && headY === food.y) {
-            score++;
-            food = spawnFood();
-        } else {
-            snake.pop();
-        }
-
-        snake.unshift(newHead);
-    }
-
-    function resetSnake() {
-        document.getElementById('scorePopup').style.display = 'none';
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        startSnake();
-    }
-</script>
-
+      // Snake
+      for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = i === 0 ? "#003366" : "#0077cc";
+        ctx.fillRect(snake[i].x, snake[i].
