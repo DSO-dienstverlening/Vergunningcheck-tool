@@ -129,7 +129,7 @@
             // Setup canvas size
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            direction = null;
+            direction = RIGHT;
             snake = [{ x: 10 * box, y: 10 * box }];
             food = {
                 x: Math.floor(Math.random() * (canvas.width / box)) * box,
