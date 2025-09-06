@@ -115,100 +115,7 @@
         <a class="btn" onclick="resetSnake()">Speel opnieuw</a>
     </div>
 
-    <script>
-        let canvas = document.getElementById('snakeCanvas');
-        let ctx = canvas.getContext('2d');
-        let box = 20;
-        let snake = [];
-        let food;
-        let direction;
-        let game;
-        let score = 0;
-
-        function startSnake() {
-            // Setup canvas size
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            direction = RIGHT;
-            snake = [{ x: 10 * box, y: 10 * box }];
-            food = {
-                x: Math.floor(Math.random() * (canvas.width / box)) * box,
-                y: Math.floor(Math.random() * (canvas.height / box)) * box
-            };
-            score = 0;
-            document.addEventListener("keydown", setDirection);
-            game = setInterval(draw, 150);
-        }
-
-        function setDirection(event) {
-            if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-            else if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-            else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-            else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Snake
-            for (let i = 0; i < snake.length; i++) {
-                ctx.fillStyle = i === 0 ? "#003366" : "#0077cc";
-                ctx.fillRect(snake[i].x, snake[i].y, box, box);
-            }
-
-            // Food
-            ctx.fillStyle = "orange";
-            ctx.fillRect(food.x, food.y, box, box);
-
-            // Movement
-            let headX = snake[0].x;
-            let headY = snake[0].y;
-
-            if (direction === "LEFT") headX -= box;
-            if (direction === "UP") headY -= box;
-            if (direction === "RIGHT") headX += box;
-            if (direction === "DOWN") headY += box;
-
-            // Eat
-            if (headX === food.x && headY === food.y) {
-                score++;
-                food = {
-                    x: Math.floor(Math.random() * (canvas.width / box)) * box,
-                    y: Math.floor(Math.random() * (canvas.height / box)) * box
-                };
-            } else {
-                snake.pop();
-            }
-
-            let newHead = { x: headX, y: headY };
-
-            // Collision
-            if (
-                headX < 0 || headY < 0 ||
-                headX >= canvas.width || headY >= canvas.height ||
-                collision(newHead, snake)
-            ) {
-                clearInterval(game);
-                document.getElementById('scoreText').innerText = "Je score: " + score;
-                document.getElementById('scorePopup').style.display = 'block';
-                return;
-            }
-
-            snake.unshift(newHead);
-        }
-
-        function collision(head, array) {
-            return array.some(part => part.x === head.x && part.y === head.y);
-        }
-
-        function resetSnake() {
-            document.getElementById('scorePopup').style.display = 'none';
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            startSnake();
-        }
-		
-    </script>
-	<canvas id="snakeCanvas" style="position: fixed; top: 0; left: 0; z-index: 9999;"></canvas>
+   <canvas id="snakeCanvas" style="position: fixed; top: 0; left: 0; z-index: 9999;"></canvas>
 <script>
     const canvas = document.getElementById("snakeCanvas");
     const ctx = canvas.getContext("2d");
@@ -262,14 +169,14 @@
         if (
             headX < 0 || headY < 0 ||
             headX >= canvas.width || headY >= canvas.height ||
-            snake.some((segment, index) => index !== 0 && segment.x === headX && segment.y === headY)
+            snake.slice(1).some(segment => segment.x === headX && segment.y === headY)
         ) {
             clearInterval(game);
             alert("Game Over! Score: " + score);
             return;
         }
 
-        let newHead = { x: headX, y: headY };
+        const newHead = { x: headX, y: headY };
 
         if (headX === food.x && headY === food.y) {
             score++;
@@ -284,9 +191,10 @@
         snake.unshift(newHead);
     }
 
-    // Start direct zodra de pagina geladen is
+    // Start direct bij laden van de pagina
     window.onload = startSnake;
 </script>
+
 
 	
 </body>
