@@ -107,43 +107,93 @@
         <a class="btn" onclick="startSnake()">Have some fun!</a>
     </div>
 
-    <canvas id="snakeCanvas"></canvas>
+   <canvas id="snakeCanvas"></canvas>
 
-    <div class="score-popup" id="scorePopup">
-        <h2>Game Over</h2>
-        <p id="scoreText"></p>
-        <a class="btn" onclick="resetSnake()">Speel opnieuw</a>
-    </div>
+<div class="score-popup" id="scorePopup">
+    <h2>Game Over</h2>
+    <p id="scoreText"></p>
+    <a class="btn" onclick="resetSnake()">Speel opnieuw</a>
+</div>
 
-   <canvas id="snakeCanvas" style="position: fixed; top: 0; left: 0; z-index: 9999;"></canvas>
 <script>
     const canvas = document.getElementById("snakeCanvas");
     const ctx = canvas.getContext("2d");
     const box = 20;
     let snake = [];
-    let direction = "RIGHT"; // Start automatisch naar rechts
+    let direction = "RIGHT";
     let food;
     let score = 0;
     let game;
+    let startX, startY;
 
     function startSnake() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        direction = "RIGHT";
         snake = [{ x: 10 * box, y: 10 * box }];
-        food = {
-            x: Math.floor(Math.random() * (canvas.width / box)) * box,
-            y: Math.floor(Math.random() * (canvas.height / box)) * box
-        };
+        direction = "RIGHT";
+        score = 0;
+        food = spawnFood();
         document.addEventListener("keydown", setDirection);
+        canvas.addEventListener("click", handleMouseClick);
+        canvas.addEventListener("touchstart", handleTouchStart, false);
+        canvas.addEventListener("touchend", handleTouchEnd, false);
         game = setInterval(draw, 150);
     }
 
+    function spawnFood() {
+        return {
+            x: Math.floor(Math.random() * (canvas.width / box)) * box,
+            y: Math.floor(Math.random() * (canvas.height / box)) * box
+        };
+    }
+
     function setDirection(event) {
-        if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-        if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-        if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-        if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+        const key = event.key;
+        if (key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+        else if (key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+        else if (key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+        else if (key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+    }
+
+    function handleMouseClick(event) {
+        const head = snake[0];
+        const clickX = event.clientX;
+        const clickY = event.clientY;
+        const centerX = head.x + box / 2;
+        const centerY = head.y + box / 2;
+
+        const dx = clickX - centerX;
+        const dy = clickY - centerY;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0 && direction !== "RIGHT") direction = "LEFT";
+            else if (dx > 0 && direction !== "LEFT") direction = "RIGHT";
+        } else {
+            if (dy < 0 && direction !== "DOWN") direction = "UP";
+            else if (dy > 0 && direction !== "UP") direction = "DOWN";
+        }
+    }
+
+    function handleTouchStart(e) {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+    }
+
+    function handleTouchEnd(e) {
+        const touch = e.changedTouches[0];
+        const endX = touch.clientX;
+        const endY = touch.clientY;
+        const dx = endX - startX;
+        const dy = endY - startY;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx < -10 && direction !== "RIGHT") direction = "LEFT";
+            else if (dx > 10 && direction !== "LEFT") direction = "RIGHT";
+        } else {
+            if (dy < -10 && direction !== "DOWN") direction = "UP";
+            else if (dy > 10 && direction !== "UP") direction = "DOWN";
+        }
     }
 
     function draw() {
@@ -154,24 +204,25 @@
             ctx.fillRect(snake[i].x, snake[i].y, box, box);
         }
 
-        ctx.fillStyle = "#4CAF50";
+        ctx.fillStyle = "orange";
         ctx.fillRect(food.x, food.y, box, box);
 
         let headX = snake[0].x;
         let headY = snake[0].y;
 
         if (direction === "LEFT") headX -= box;
-        if (direction === "UP") headY -= box;
-        if (direction === "RIGHT") headX += box;
-        if (direction === "DOWN") headY += box;
+        else if (direction === "UP") headY -= box;
+        else if (direction === "RIGHT") headX += box;
+        else if (direction === "DOWN") headY += box;
 
         if (
             headX < 0 || headY < 0 ||
             headX >= canvas.width || headY >= canvas.height ||
-            snake.slice(1).some(segment => segment.x === headX && segment.y === headY)
+            snake.some((segment, index) => index !== 0 && segment.x === headX && segment.y === headY)
         ) {
             clearInterval(game);
-            alert("Game Over! Score: " + score);
+            document.getElementById('scoreText').innerText = "Je score: " + score;
+            document.getElementById('scorePopup').style.display = 'block';
             return;
         }
 
@@ -179,10 +230,7 @@
 
         if (headX === food.x && headY === food.y) {
             score++;
-            food = {
-                x: Math.floor(Math.random() * (canvas.width / box)) * box,
-                y: Math.floor(Math.random() * (canvas.height / box)) * box
-            };
+            food = spawnFood();
         } else {
             snake.pop();
         }
@@ -190,11 +238,10 @@
         snake.unshift(newHead);
     }
 
-    // Start direct bij laden van de pagina
-    window.onload = startSnake;
+    function resetSnake() {
+        document.getElementById('scorePopup').style.display = 'none';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        startSnake();
+    }
 </script>
 
-
-	
-</body>
-</html>
