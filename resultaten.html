@@ -99,10 +99,6 @@
     document.getElementById("downloadBtn").addEventListener("click", function () {
         const content = document.getElementById("pdf-content");
 
-        // Verberg de knoppen tijdelijk
-        const knoppen = content.querySelectorAll(".btn");
-        knoppen.forEach(btn => btn.style.display = "none");
-
         const opt = {
             margin:       0.5,
             filename:     'vooronderzoek-bevindingen.pdf',
@@ -111,12 +107,10 @@
             jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
 
-        html2pdf().set(opt).from(content).save().then(() => {
-            // Toon de knoppen weer na het opslaan
-            knoppen.forEach(btn => btn.style.display = "inline-block");
-        });
+        html2pdf().set(opt).from(content).save();
     });
 </script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
