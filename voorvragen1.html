@@ -65,11 +65,33 @@
         }
     </style>
 </head>
+
+<script>
+    function verzamelAntwoorden() {
+        const antwoorden = {
+            vraag1: document.querySelector('input[name="vraag1"]:checked')?.value || '',
+            vraag2: document.querySelector('input[name="vraag2"]:checked')?.value || '',
+            vraag3: document.querySelector('input[name="vraag3"]:checked')?.value || '',
+            vraag4: document.querySelector('input[name="vraag4"]:checked')?.value || '',
+            vraag5: document.querySelector('input[name="vraag5"]:checked')?.value || '',
+        };
+        localStorage.setItem('vooronderzoek', JSON.stringify(antwoorden));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function () {
+            verzamelAntwoorden(); // antwoorden opslaan vóór doorgaan
+        });
+    });
+</script>
+
+
 <body>
     <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
     <div class="container">
         <h1>Vooronderzoek</h1>
-        <form action="analyse2.html">
+        <form action="resultaten.html">
 
             <div class="question">
                 <p>1. Is de uitkomst van de vergunningcheck altijd 'neem contact op met uw gemeente'?
@@ -126,8 +148,9 @@
                 </div>
             </div>
 
-           <a class="btn" href="symptomen.html">Terug</a>
-			<a class="btn" href="resultaten.html">Bekijk jouw uitkomst</a>
+			<a class="btn" href="symptomen.html">Terug</a>
+			<button class="btn" type="submit">Bekijk jouw uitkomst</button>
+
         </form>
     </div>
 </body>
