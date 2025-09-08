@@ -52,6 +52,15 @@
             right: 40px;
             width: 140px;
         }
+		#pdf-content {
+			margin-top: 0 !important;
+			padding-top: 0 !important;
+			page-break-inside: auto;
+		}
+
+		.bevinding {
+			page-break-inside: avoid;
+		}
     </style>
 </head>
 <body>
@@ -96,27 +105,35 @@
 </script>
 
 <script>
-   document.getElementById("downloadBtn").addEventListener("click", function () {
+document.getElementById("downloadBtn").addEventListener("click", async function () {
     const content = document.getElementById("pdf-content");
-
-    // Verberg knoppen tijdelijk
     const knoppen = document.getElementById("knoppen");
+
+    // Verberg knoppen uit beeld voor de PDF
     knoppen.style.display = "none";
 
+    // Scroll helemaal naar boven
+    window.scrollTo(0, 0);
+
+    // Forceer herflow en wacht kort (layout fix)
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     const opt = {
-        margin:       0.3,
-        filename:     'vooronderzoek-bevindingen.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 3, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        margin: 0.3,
+        filename: 'vooronderzoek-bevindingen.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
+    // Genereer en download de PDF
     html2pdf().set(opt).from(content).save().then(() => {
-        // Toon de knoppen weer na het opslaan
+        // Knoppen terug tonen na genereren
         knoppen.style.display = "block";
     });
 });
 </script>
+
 
 
 
