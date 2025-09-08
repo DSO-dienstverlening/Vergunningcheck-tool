@@ -96,34 +96,26 @@
 </script>
 
 <script>
-    document.getElementById("downloadBtn").addEventListener("click", function () {
-        const content = document.getElementById("pdf-content");
-        const bevindingenDiv = document.getElementById("bevindingen");
+   document.getElementById("downloadBtn").addEventListener("click", function () {
+    const content = document.getElementById("pdf-content");
 
-        // Verberg knoppen uit de PDF
-        document.getElementById("knoppen").style.display = "none";
+    // Verberg knoppen tijdelijk
+    const knoppen = document.getElementById("knoppen");
+    knoppen.style.display = "none";
 
-        // Opties voor PDF
-        const opt = {
-            margin:       0.3,
-            filename:     'vooronderzoek-bevindingen.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 3, useCORS: true },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
+    const opt = {
+        margin:       0.3,
+        filename:     'vooronderzoek-bevindingen.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 3, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
 
-        // Observer die wacht op mutaties in #bevindingen
-        const observer = new MutationObserver(() => {
-            if (bevindingenDiv.children.length > 0) {
-                observer.disconnect(); // stop met observeren
-                html2pdf().set(opt).from(content).save().then(() => {
-                    document.getElementById("knoppen").style.display = "block"; // Toon knoppen weer
-                });
-            }
-        });
-
-        observer.observe(bevindingenDiv, { childList: true });
+    html2pdf().set(opt).from(content).save().then(() => {
+        // Toon de knoppen weer na het opslaan
+        knoppen.style.display = "block";
     });
+});
 </script>
 
 
