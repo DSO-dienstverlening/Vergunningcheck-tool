@@ -98,21 +98,34 @@
 <script>
     document.getElementById("downloadBtn").addEventListener("click", function () {
         const content = document.getElementById("pdf-content");
+        const bevindingenDiv = document.getElementById("bevindingen");
 
-        // Kleine vertraging om te zorgen dat bevindingen geladen zijn
-        setTimeout(() => {
-            const opt = {
-                margin:       0.3,
-                filename:     'vooronderzoek-bevindingen.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 3, useCORS: true },
-                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
+        // Verberg knoppen uit de PDF
+        document.getElementById("knoppen").style.display = "none";
 
-            html2pdf().set(opt).from(content).save();
-        }, 250); // wacht 250 ms
+        // Opties voor PDF
+        const opt = {
+            margin:       0.3,
+            filename:     'vooronderzoek-bevindingen.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 3, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Observer die wacht op mutaties in #bevindingen
+        const observer = new MutationObserver(() => {
+            if (bevindingenDiv.children.length > 0) {
+                observer.disconnect(); // stop met observeren
+                html2pdf().set(opt).from(content).save().then(() => {
+                    document.getElementById("knoppen").style.display = "block"; // Toon knoppen weer
+                });
+            }
+        });
+
+        observer.observe(bevindingenDiv, { childList: true });
     });
 </script>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
