@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Vooronderzoek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 140px;
+        }
+        h1 {
+            color: #003366;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .example {
+            margin: 8px 0;
+            padding: 6px 12px;
+            border-left: 4px solid #4CAF50;
+            background-color: #f0fdf4;
+            font-style: italic;
+        }
+        .tooltip {
+            margin-left: 8px;
+            cursor: help;
+        }
+        .options label {
+            display: block;
+            margin: 4px 0;
+        }
+        .btn {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #00509e;
+        }
+    </style>
+</head>
+
+<script>
+    function verzamelAntwoorden() {
+        const antwoorden = {
+            vraag1: document.querySelector('input[name="vraag1"]:checked')?.value || '',
+            vraag2: document.querySelector('input[name="vraag2"]:checked')?.value || '',
+            vraag3: document.querySelector('input[name="vraag3"]:checked')?.value || '',
+            vraag4: document.querySelector('input[name="vraag4"]:checked')?.value || '',
+            vraag5: document.querySelector('input[name="vraag5"]:checked')?.value || '',
+        };
+        localStorage.setItem('vooronderzoek', JSON.stringify(antwoorden));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function () {
+            verzamelAntwoorden(); // antwoorden opslaan vóór doorgaan
+        });
+    });
+</script>
+
+
+<body>
+    <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
+    <div class="container">
+        <h1>Vooronderzoek</h1>
+        <form action="resultaten.html">
+
+            <div class="question">
+                <p>1. Is de uitkomst van de vergunningcheck altijd 'neem contact op met uw gemeente'?
+                    <span class="tooltip" title="Gebruikers raken gefrustreerd als zij een hele beslisboom moeten doorlopen en als uitkomst krijgen 'neem contact op met uw gemeente'. Dit hadden zij liever gelijk geweten.">ℹ️</span>
+                </p>
+                <div class="example">Voorbeeld: Als er vragen worden gesteld over de BESI, dan zal dit altijd leiden tot de uitkomst 'bel uw gemeente'.</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag1" value="zelden"> Ja</label>
+                    <label><input type="radio" name="vraag1" value="soms"> Nee</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. Betreft het een beslisboom voor een activiteit die (in potentie) zeer beperkt wordt doorlopen?
+				<span class="tooltip" title="Als een activiteit niet vaak voorkomt of alleen door een hele specifieke (afgebakende) groep zal worden gebruikt, dan zijn er misschien ook andere manieren om te communiceren over de regels.">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: Concrete voorbeelden hiervan zijn (1) zwembad, bubbelbad of vijver aanleggen of vervangen, (2) luik, rolluik, rolhek of zonwering plaatsen of vervangen.</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag2" value="zelden"> Ja</label>
+                    <label><input type="radio" name="vraag2" value="soms"> Nee</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. Betreft het een activiteit met veel juridische informatie die moeilijk toepasbaar gemaakt kan worden?
+                    <span class="tooltip" title="Als juridische informatie te moeilijk is om te vatten in toepasbare regels is het belangrijk een zorgvuldige afweging te maken. Er zijn meerdere opties om toch duidelijke informatie en dienstverlening te bieden.">ℹ️</span>
+                </p>
+                <div class="example">Voorbeeld: Als er in het omgevingsplan sprake is van algemene regels met open normen (veel beleidsruimte) dan ligt het meer voor de hand om het gesprek aan te gaan met een initiatiefnemer. Het toepasbaar maken van deze juridische regels is te complex.</div>
+                <div class="options">
+                    <label><input type="radio" name="vraag3" value="zelden"> Ja</label>
+                    <label><input type="radio" name="vraag3" value="soms"> Nee</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>4. Zijn er betere manieren dan een beslisboom om duidelijk te maken wat er nodig is voor deze activiteit?
+				<span class="tooltip" title="In sommige gevallen zijn er snellere en duidelijkere manieren van communiceren met initiatiefnemers. Niet in alle gevallen is de vergunningcheck het meest voor de hand liggende middel om informatie over een activiteit te geven.">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: Een voorbeeld is om alle inwoners van een grondwaterbeschermingsgebied een informatiefolder aan te bieden. </div>
+                <div class="options">
+                    <label><input type="radio" name="vraag4" value="zelden"> Ja</label>
+                    <label><input type="radio" name="vraag4" value="soms"> Nee</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>5. Moeten er complexe berekeningen worden uitgevoerd die makkelijk kunnen leiden tot vragen en/of fouten?
+				<span class="tooltip" title="Als er complexe berekeningen moeten worden uitgevoerd bestaat er een grotere kans op het maken van fouten. Dit kan (onbewust) leiden tot verkeerde conclusies en aanvragen. Tevens is er een grotere kans op vragen gericht aan de gemeente.">ℹ️</span>
+				</p>
+                <div class="example">Voorbeeld: Bijvoorbeeld de berekeningen van het achtererfgebied bij het plaatsen van een bijbehorend bouwwerk.  </div>
+                <div class="options">
+                    <label><input type="radio" name="vraag5" value="zelden"> Ja</label>
+                    <label><input type="radio" name="vraag5" value="soms"> Nee</label>
+                </div>
+            </div>
+
+			<a class="btn" href="symptomen.html">Terug</a>
+			<button class="btn" type="submit">Bekijk jouw uitkomst</button>
+
+        </form>
+    </div>
+</body>
+</html>
+
