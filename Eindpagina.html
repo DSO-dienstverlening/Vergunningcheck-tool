@@ -113,9 +113,9 @@
             <p>Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!</p>
         
 		
-		<p>
+		<p id="feedbackIntro">
 			Heeft u opmerkingen of suggesties over deze analyse? 
-			<a href="#" id="toonFeedback">Klik hier</a> om feedback te geven.
+		<a href="#" id="toonFeedback">Klik hier</a> om feedback te geven.
 		</p>
 		
 	<div id="feedbackForm" style="display: none; margin-top: 20px;">
@@ -134,11 +134,16 @@
     </div>
 
 <script>
+    
     document.getElementById("toonFeedback").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.getElementById("feedbackForm").style.display = "block";
-        document.getElementById("toonFeedback").style.display = "none";
-    });
+    e.preventDefault();
+
+   
+    document.getElementById("feedbackIntro").innerHTML = "<strong>Laat hieronder uw feedback achter:</strong>";
+
+    
+    document.getElementById("feedbackForm").style.display = "block";
+});
 
     document.getElementById("formspreeForm").addEventListener("submit", function(e) {
         e.preventDefault();
