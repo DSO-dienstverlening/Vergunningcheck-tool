@@ -102,12 +102,50 @@
         <p><strong>Bedankt voor het doorlopen van de aanpakkersrichtlijn!</strong></p>
         <div class="intro">
             <p>Je hebt alle onderdelen van de richtlijn succesvol doorlopen: van symptomen, het vooronderzoek tot de analyse. We hopen dat het je heeft geholpen om scherp te krijgen waar verbeterkansen liggen!</p>
-        </div>
+        
+		
+		<p>Heeft u opmerkingen of suggesties over deze analyse? 
+			
+		<a href="#" id="toonFeedback">Klik hier</a> om feedback te geven.</p>
+		</div>
+
+		<div id="feedbackForm" style="display: none; margin-top: 20px;">
+			<textarea id="feedbackTekst" rows="5" style="width: 100%;" placeholder="Schrijf hier uw feedback..."></textarea>
+			<br>
+			<button id="verzendFeedback" class="btn" style="margin-top: 10px;">Verzend feedback</button>
+		<p id="feedbackBevestiging" style="color: green; display: none; margin-top: 10px;">Bedankt voor uw feedback!</p>
+	</div>
 
         <a class="btn" href="resultatenanalyse.html">Terug</a>
-		<a class="btn" href="index.html">Opnieuw?</a>
+		<a class="btn" href="index.html">Begin opnieuw</a>
       
     </div>
+
+<script>
+    document.getElementById("toonFeedback").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("feedbackForm").style.display = "block";
+        document.getElementById("toonFeedback").style.display = "none";
+    });
+
+    document.getElementById("verzendFeedback").addEventListener("click", function() {
+        const feedback = document.getElementById("feedbackTekst").value;
+
+        if (feedback.trim() === "") {
+            alert("Vul alstublieft uw feedback in.");
+            return;
+        }
+
+        // Simuleer verzenden (bijv. naar een e-mail of API)
+        // Voor nu: open mailto zonder e-mailadres te tonen in de HTML
+        const mailtoLink = `mailto:geralt.vogelzang@midden-groningen.nl{encodeURIComponent(feedback)}`;
+        window.location.href = mailtoLink;
+
+        // Bevestiging tonen
+        document.getElementById("feedbackBevestiging").style.display = "block";
+        document.getElementById("feedbackTekst").value = "";
+    });
+</script>
 
     
 </html>
