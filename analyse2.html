@@ -157,5 +157,24 @@
 			<a class="btn" href="resultatenanalyse.html">Bekijk uw resultaat</a>
         </form>
     </div>
+	
+	<script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const antwoorden = {};
+        const vragen = ["vraag1", "vraag2", "vraag3", "vraag4", "vraag5"];
+        vragen.forEach(vraag => {
+            const gekozen = document.querySelector(`input[name="${vraag}"]:checked`);
+            if (gekozen) {
+                antwoorden[vraag] = gekozen.value;
+            }
+        });
+
+        localStorage.setItem("analyse2", JSON.stringify(antwoorden));
+        window.location.href = "resultatenanlyse.html"; 
+    });
+</script>
+	
 </body>
 </html>

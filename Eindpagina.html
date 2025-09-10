@@ -2,105 +2,78 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Aanpakkersrichtlijn voor beslisbomen</title>
+    <title>Resultaten analyse</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             margin: 0;
             padding: 40px;
-            overflow: hidden;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .intro p {
-            font-size: 1em;
-            text-align: left;
-            margin-bottom: 16px;
-        }
-
-        .intro strong {
-            font-size: 1.1em;
         }
 
         h1 {
             color: #003366;
-        }
-
-        p {
-            font-size: 1.1em;
-        }
-
-        .btn {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 1em;
-            background-color: #003366;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-            z-index: 2;
-            position: relative;
-        }
-
-        .btn:hover {
-            background-color: #00509e;
-        }
-
-        .logo {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 140px;
-            z-index: 2;
-        }
-
-        #snakeCanvas {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 10;
-        }
-
-        .score-popup {
-            position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 2px solid #003366;
-            padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            display: none;
-            z-index: 20;
+            margin-bottom: 40px;
         }
-		
-		#feedbackBevestiging {
-			color: green;
-			display: none;
-			margin-top: 10px;
-			font-weight: bold;
-			transition: opacity 0.3s ease;
-		}
 
+        .result-blok {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .result-header {
+            font-weight: bold;
+            padding: 12px 16px;
+            color: white;
+        }
+
+        .result-body {
+            background-color: #f8f9fa;
+            padding: 16px;
+        }
+
+        .rood .result-header {
+            background-color: #c0392b;
+        }
+
+        .rood .result-body {
+            background-color: #fbeaea;
+        }
+
+        .oranje .result-header {
+            background-color: #f39c12;
+        }
+
+        .oranje .result-body {
+            background-color: #fff4e5;
+        }
+
+        .groen .result-header {
+            background-color: #27ae60;
+        }
+
+        .groen .result-body {
+            background-color: #f0fdf4;
+        }
+
+        .vraag-item {
+            margin-bottom: 12px;
+        }
+
+        .vraag-titel {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
