@@ -10,40 +10,69 @@
             margin: 0;
             padding: 40px;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
         }
+
         h1 {
             color: #003366;
+            text-align: center;
+            margin-bottom: 40px;
         }
-        p {
-            font-size: 1.1em;
+
+        .result-blok {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .btn {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 1em;
-            background-color: #003366;
+
+        .result-header {
+            font-weight: bold;
+            padding: 12px 16px;
             color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s;
         }
-        .btn:hover {
-            background-color: #00509e;
+
+        .result-body {
+            background-color: #f8f9fa;
+            padding: 16px;
         }
-        .logo {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 140px;
+
+        .rood .result-header {
+            background-color: #c0392b;
+        }
+
+        .rood .result-body {
+            background-color: #fbeaea;
+        }
+
+        .oranje .result-header {
+            background-color: #f39c12;
+        }
+
+        .oranje .result-body {
+            background-color: #fff4e5;
+        }
+
+        .groen .result-header {
+            background-color: #27ae60;
+        }
+
+        .groen .result-body {
+            background-color: #f0fdf4;
+        }
+
+        .vraag-item {
+            margin-bottom: 12px;
+        }
+
+        .vraag-titel {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -51,8 +80,71 @@
     <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
     <div class="container">
         <h1>Resultaten</h1>
-        <p>"onder constructie".</p>
+        <p>"U heeft alle analyse-vragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen. ".</p>
         
+		<div class="result-blok rood">
+            <div class="result-header">Verbeterpunten</div>
+            <div class="result-body" id="roodContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+        <div class="result-blok oranje">
+            <div class="result-header">Aandachtspunten</div>
+            <div class="result-body" id="oranjeContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+        <div class="result-blok groen">
+            <div class="result-header">Op orde</div>
+            <div class="result-body" id="groenContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+        <a class="btn" href="index.html" style="margin-top: 20px; display: inline-block; background-color: #003366; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Begin opnieuw</a>
+    </div>
+
+    <script>
+        // Simulatie vraagteksten
+        const vragen = {
+            vraag1: "1. Worden de belangrijkste discriminerende vragen eerst gesteld?",
+            vraag2: "2. Bevat de beslisboom niet-relevante vragen?",
+            vraag3: "3. Is geo gekoppeld aan de beslisboom?",
+            vraag4: "4. Zijn multiple-choice vragen opgesplitst?",
+            vraag5: "5. Worden er illustraties gebruikt ter verduidelijking?"
+        };
+
+        // Ophalen antwoorden uit localStorage
+        const antwoorden = JSON.parse(localStorage.getItem("analyse")) || {};
+
+        // Containers
+        const roodContainer = document.getElementById("roodContainer");
+        const oranjeContainer = document.getElementById("oranjeContainer");
+        const groenContainer = document.getElementById("groenContainer");
+
+        // Loop door vragen
+        for (let key in antwoorden) {
+            const antwoord = antwoorden[key];
+            const tekst = vragen[key] || key;
+
+            const div = document.createElement("div");
+            div.classList.add("vraag-item");
+            div.innerHTML = `<div class="vraag-titel">${tekst}</div>`;
+
+            if (antwoord === "red") {
+                roodContainer.appendChild(div);
+            } else if (antwoord === "orange") {
+                oranjeContainer.appendChild(div);
+            } else if (antwoord === "green") {
+                groenContainer.appendChild(div);
+            }
+        }
+    </script>
+</body>
+</html>
+		
 		<a class="btn" href="analyse2.html">Terug</a>
 		<a class="btn" href="">Download als pdf.</a>
 		<a class="btn" href="eindpagina.html">Afsluiten</a>
