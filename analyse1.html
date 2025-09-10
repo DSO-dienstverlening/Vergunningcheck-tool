@@ -136,7 +136,8 @@
             </div>
 
 			<a class="btn" href="resultaten">Terug</a>
-			<button class="btn" type="analyse2.html">Volgende</button>
+			<button class="btn" type="submit">Volgende</button>
+
         </form>
     </div>
 	
@@ -144,19 +145,21 @@
     document.querySelector("form").addEventListener("submit", function(e) {
         e.preventDefault();
 
-        const antwoorden = {};
+        const opgeslagen = JSON.parse(localStorage.getItem("analyse")) || {};
         const vragen = ["vraag1", "vraag2", "vraag3", "vraag4", "vraag5"];
+
         vragen.forEach(vraag => {
             const gekozen = document.querySelector(`input[name="${vraag}"]:checked`);
             if (gekozen) {
-                antwoorden[vraag] = gekozen.value;
+                opgeslagen[vraag] = gekozen.value;
             }
         });
 
-        localStorage.setItem("analyse1", JSON.stringify(antwoorden));
-        window.location.href = "resultatenanlyse.html"; 
+        localStorage.setItem("analyse", JSON.stringify(opgeslagen));
+        window.location.href = "analyse2.html";
     });
 </script>
+
 
 	
 	
