@@ -45,7 +45,7 @@
             color: white;
         }
 
-        .rood .result-header {
+.rood .result-header {
     background-color: #a94442;
 }
 
@@ -92,6 +92,17 @@
         .btn:hover {
             background-color: #00509e;
         }
+		
+		#pdf-content {
+			margin-top: 0 !important;
+			padding-top: 0 !important;
+			page-break-inside: auto;
+		}
+
+		.bevinding {
+			page-break-inside: avoid;
+		}
+		
     </style>
 </head>
 <body>
@@ -124,7 +135,7 @@
         </div>
 
 
-	<p><strong>Organisatorische randvoorwaarden voor het verbeteren van beslisbomen</strong></p>
+	<p><strong>Organisatorische randvoorwaarden voor het verbeteren van beslisbomen.</strong></p>
 	<p>Het verbeteren van beslisbomen in de vergunningcheck binnen het Digitaal Stelsel Omgevingswet is natuurlijk niet alleen een kwestie van inhoud, maar ook van organisatie, samenwerking en middelen. Om hier structureel mee aan de slag te kunnen gaan, zijn de volgende randvoorwaarden van belang:</p>
 	
 	<ul style="text-align: left; line-height: 1.6;">
@@ -148,7 +159,7 @@
 	<li>Blijf denken vanuit het perspectief van de initiatiefnemer!</li> </ul>
 
         <a class="btn" href="analyse2.html">Terug</a>
-        <a class="btn" href="#" onclick="alert('onder constructie')">Download als pdf</a>
+        <a class="btn" href="#" id="downloadBtn">Download als pdf.</a>
         <a class="btn" href="eindpagina.html">Afsluiten</a>
     </div>
 
@@ -190,5 +201,38 @@
             }
         }
     </script>
+	
+	<script>
+document.getElementById("downloadBtn").addEventListener("click", async function () {
+    const content = document.getElementById("pdf-content");
+    const knoppen = document.getElementById("knoppen");
+
+    // Verberg knoppen uit beeld voor de PDF
+    knoppen.style.display = "none";
+
+    // Scroll helemaal naar boven
+    window.scrollTo(0, 0);
+
+    // Forceer herflow en wacht kort (layout fix)
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const opt = {
+        margin: 0.3,
+        filename: 'vooronderzoek-bevindingen.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Genereer en download de PDF
+    html2pdf().set(opt).from(content).save().then(() => {
+        // Knoppen terug tonen na genereren
+        knoppen.style.display = "block";
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+	
 </body>
 </html>
