@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultaten analyse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 140px;
+        }
+
+        h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .result-blok {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .result-header {
+            font-weight: bold;
+            padding: 12px 16px;
+            color: white;
+        }
+
+.rood .result-header {
+    background-color: #a94442;
+}
+
+.rood .result-body {
+    background-color: #f2dede;
+}
+
+.oranje .result-header {
+    background-color: #e67e22;
+}
+
+.oranje .result-body {
+    background-color: #fef5e7;
+}
+
+.groen .result-header {
+    background-color: #3c763d;
+}
+
+.groen .result-body {
+    background-color: #dff0d8;
+}
+
+
+        .vraag-item {
+            margin-bottom: 12px;
+        }
+
+        .vraag-titel {
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #00509e;
+        }
+		
+		#pdf-content {
+			margin-top: 0 !important;
+			padding-top: 0 !important;
+			page-break-inside: auto;
+		}
+
+		.bevinding {
+			page-break-inside: avoid;
+		}
+		
+    </style>
+</head>
+<body>
+    <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
+    <div class="container" id="pdf-content">
+
+        <h1>Resultaten</h1>
+        <p>
+          <p>U heeft alle analyse-vragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen.</p>  
+        </p>
+        
+        <div class="result-blok rood">
+            <div class="result-header">Verbeterpunten</div>
+            <div class="result-body" id="roodContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+        <div class="result-blok oranje">
+            <div class="result-header">Aandachtspunten</div>
+            <div class="result-body" id="oranjeContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+        <div class="result-blok groen">
+            <div class="result-header">Op orde</div>
+            <div class="result-body" id="groenContainer">
+                <!-- JS vult dit -->
+            </div>
+        </div>
+
+
+	<p><strong>Organisatorische randvoorwaarden voor het verbeteren van beslisbomen.</strong></p>
+	<p>Het verbeteren van beslisbomen in de vergunningcheck binnen het Digitaal Stelsel Omgevingswet is natuurlijk niet alleen een kwestie van inhoud, maar ook van organisatie, samenwerking en middelen. Om hier structureel mee aan de slag te kunnen gaan, zijn de volgende randvoorwaarden van belang:</p>
+	
+	<ul style="text-align: left; line-height: 1.6;">
+	<li><strong>Capaciteit:</strong> Is er capaciteit beschikbaar binnen uw organisatie? Denk aan regelanalisten en juridische medewerkers. Om een compleet beeld te kunnen krijgen van de verbeteropgave is het raadzaam om de 10 meest gekozen activiteiten en werkzaamheden te analyseren aan de hand van deze richtlijn.</li>
+	<li><strong>Financiële middelen:</strong> Zijn er voldoende financiële middelen beschikbaar om capaciteit in te schakelen?</li>
+	<li><strong>Kennis:</strong> Is er voldoende kennis aanwezig binnen de organisatie om beslisbomen op te stellen of te verbeteren? Denk aan kennis over toepasbare regels, werking van het DSO en wetgeving)</li>
+	<li><strong>Externe overlegstructuren:</strong> Is er een overlegstructuur met andere bestuurslagen, zoals buurgemeenten, Rijk, Provincie, Waterschap, Omgevingsdienst)?</li>
+	<li><strong>Interne samenwerking:</strong> Is er goede interne afstemming tussen de betrokken teams in de VTH en planketen? Afstemming tussen beleid, uitvoering, juridische zaken en ICT is van cruciaal belang.</li>
+	<li><strong>Testpanel:</strong> Beschikt u over een testpanel om de werking van vragenbomen te kunnen testen?</li>
+	<li><strong>Monitoring:</strong> Komen er nog vragen binnen van initiatiefnemers die vastlopen? Komen de juiste meldingen of vergunningaanvragen binnen?</li>
+	<li><strong>Beheer en onderhoud</strong>: van de beslisbomen</li> 
+	</ul>
+	
+	<p>Deze factoren bepalen of er daadwerkelijk verbeteringen kunnen worden doorgevoerd in de toepasbare regels en de werking van beslisbomen.</p>
+	
+	<p><strong>Nog drie laatste tips:</strong></p>
+	
+	<ul style="text-align: left; line-height: 1.6;">
+	<li>Probeer het doorlopen van de vergunningcheck niet langer te laten duren dan circa 20 minuten. Uit gebruikersonderzoeken is gebleken dat mensen vermoeid of gefrustreerd raken naarmate een vragenlijst langer duurt. De foutmarge neemt exponentieel toe waarmee de uitkomst van de vergunningcheck als minder betrouwbaar mag worden beschouwd; </li>
+	<li>Duurt het doorlopen van een vergunningcheck veel langer dan circa 20 minuten dan geldt de aanbeveling om te overwegen om op een andere manier informatie beschikbaar te stellen. Dit kan bijvoorbeeld via de website van uw bevoegd gezag, of via telefonisch contact.</li>
+	<li>Blijf denken vanuit het perspectief van de initiatiefnemer!</li> </ul>
+
+	<div id="knoppen">
+        <a class="btn" href="analyse2.html">Terug</a>
+        <a class="btn" href="#" id="downloadBtn">Download als pdf.</a>
+        <a class="btn" href="eindpagina.html">Afsluiten</a>
+	</div>	
+    </div>
+
+    <script>
+        const vragen = {
+            vraag1: "vraag 1. ",
+            vraag2: "vraag 2. ",
+            vraag3: "vraag 3. ",
+            vraag4: "vraag 4. ",
+            vraag5: "vraag 5. ",
+            vraag6: "vraag 6. ",
+            vraag7: "vraag 7. ",
+            vraag8: "vraag 8. ",
+            vraag9: "vraag 9. ",
+            vraag10: "vraag10. ",
+            vraag11: "vraag11. "
+        };
+
+        const antwoorden = JSON.parse(localStorage.getItem("analyse")) || {};
+
+        const roodContainer = document.getElementById("roodContainer");
+        const oranjeContainer = document.getElementById("oranjeContainer");
+        const groenContainer = document.getElementById("groenContainer");
+
+        for (let key in antwoorden) {
+            const antwoord = antwoorden[key];
+            const tekst = vragen[key] || key;
+
+            const div = document.createElement("div");
+            div.classList.add("vraag-item");
+            div.innerHTML = `<div class="vraag-titel">${tekst}</div>`;
+
+            if (antwoord === "red") {
+                roodContainer.appendChild(div);
+            } else if (antwoord === "orange") {
+                oranjeContainer.appendChild(div);
+            } else if (antwoord === "green") {
+                groenContainer.appendChild(div);
+            }
+        }
+    </script>
+	
+	<script>
+document.getElementById("downloadBtn").addEventListener("click", async function () {
+    const content = document.getElementById("pdf-content");
+    const knoppen = document.getElementById("knoppen");
+
+    // Verberg knoppen uit beeld voor de PDF
+    knoppen.style.display = "none";
+
+    // Scroll helemaal naar boven
+    window.scrollTo(0, 0);
+
+    // Forceer herflow en wacht kort (layout fix)
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const opt = {
+        margin: 0.3,
+        filename: 'Aanpakkersrichtlijn.analyse.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Genereer en download de PDF
+    html2pdf().set(opt).from(content).save().then(() => {
+        // Knoppen terug tonen na genereren
+        knoppen.style.display = "block";
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+	
+</body>
+</html>
