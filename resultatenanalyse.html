@@ -20,6 +20,13 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 140px;
+        }
+
         h1 {
             color: #003366;
             text-align: center;
@@ -74,15 +81,32 @@
         .vraag-titel {
             font-weight: bold;
         }
+
+        .btn {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #00509e;
+        }
     </style>
 </head>
 <body>
     <img src="Logo_DPL_Alternative_FC.png" alt="DSO Logo" class="logo">
     <div class="container">
         <h1>Resultaten</h1>
-        <p>"U heeft alle analyse-vragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen. ".</p>
+        <p>
+          <p>"U heeft alle analyse-vragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen. ".</p>  
+        </p>
         
-		<div class="result-blok rood">
+        <div class="result-blok rood">
             <div class="result-header">Verbeterpunten</div>
             <div class="result-body" id="roodContainer">
                 <!-- JS vult dit -->
@@ -103,28 +127,32 @@
             </div>
         </div>
 
-        <a class="btn" href="index.html" style="margin-top: 20px; display: inline-block; background-color: #003366; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Begin opnieuw</a>
+        <a class="btn" href="analyse2.html">Terug</a>
+        <a class="btn" href="#" onclick="alert('onder constructie')">Download als pdf</a>
+        <a class="btn" href="eindpagina.html">Afsluiten</a>
     </div>
 
     <script>
-        // Simulatie vraagteksten
         const vragen = {
             vraag1: "1. Worden de belangrijkste discriminerende vragen eerst gesteld?",
             vraag2: "2. Bevat de beslisboom niet-relevante vragen?",
             vraag3: "3. Is geo gekoppeld aan de beslisboom?",
             vraag4: "4. Zijn multiple-choice vragen opgesplitst?",
-            vraag5: "5. Worden er illustraties gebruikt ter verduidelijking?"
+            vraag5: "5. Worden er illustraties gebruikt ter verduidelijking?",
+            vraag6: "6. Wordt er gebruik gemaakt van B1-taalgebruik?",
+            vraag7: "7. Worden moeilijke vaktermen uitgelegd?",
+            vraag8: "8. Verschillen termen tussen overheden?",
+            vraag9: "9. Worden woorden verschillend gebruikt bij overheden?",
+            vraag10: "10. Worden dezelfde vragen dubbel gesteld?",
+            vraag11: "11. Worden open vragen gebruikt die gesloten kunnen?"
         };
 
-        // Ophalen antwoorden uit localStorage
         const antwoorden = JSON.parse(localStorage.getItem("analyse")) || {};
 
-        // Containers
         const roodContainer = document.getElementById("roodContainer");
         const oranjeContainer = document.getElementById("oranjeContainer");
         const groenContainer = document.getElementById("groenContainer");
 
-        // Loop door vragen
         for (let key in antwoorden) {
             const antwoord = antwoorden[key];
             const tekst = vragen[key] || key;
@@ -142,13 +170,5 @@
             }
         }
     </script>
-</body>
-</html>
-		
-		<a class="btn" href="analyse2.html">Terug</a>
-		<a class="btn" href="">Download als pdf.</a>
-		<a class="btn" href="eindpagina.html">Afsluiten</a>
-		
-    </div>
 </body>
 </html>
