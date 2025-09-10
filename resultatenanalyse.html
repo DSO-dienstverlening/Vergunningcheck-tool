@@ -166,5 +166,38 @@
   }
 </script>
 
+<script>
+document.getElementById("downloadBtn").addEventListener("click", async function () {
+    const content = document.getElementById("pdf-content");
+    const knoppen = document.getElementById("knoppen");
+
+    // Verberg knoppen uit beeld voor de PDF
+    knoppen.style.display = "none";
+
+    // Scroll helemaal naar boven
+    window.scrollTo(0, 0);
+
+    // Forceer herflow en wacht kort (layout fix)
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const opt = {
+        margin: 0.3,
+        filename: 'Aanpakkersrichtlijn.analyse.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Genereer en download de PDF
+    html2pdf().set(opt).from(content).save().then(() => {
+        // Knoppen terug tonen na genereren
+        knoppen.style.display = "block";
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
 </body>
 </html>
