@@ -96,9 +96,11 @@
 <div class="container" id="pdf-content">
   <h1>Resultaten</h1>
 
-        <p>
-          <p>U heeft alle analysevragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen.</p>  
-        </p>
+        
+        <p></p>
+		
+		<p>U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen.</p>  
+       
 
   <div class="result-container">
   <div class="sectietitel">De volgende vragen zijn op orde:</div>
@@ -223,6 +225,14 @@
   };
 
   const antwoorden = JSON.parse(localStorage.getItem("analyse")) || {};
+  
+   const totaalVragen = Object.keys(vragen).length;
+  const ingevuld = Object.values(antwoorden).filter(v => v).length;
+
+    const inleidingsParagraaf = document.querySelector("#pdf-content > p");
+  inleidingsParagraaf.textContent =
+    `U heeft ${ingevuld} van de ${totaalVragen} analysevragen beantwoord. ` +
+    `Op basis van uw antwoorden ziet u hieronder waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck.`;
 
   for (let key in antwoorden) {
     const value = antwoorden[key];
