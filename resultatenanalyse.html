@@ -106,12 +106,12 @@
 	</div>
 
 	<div class="result-container">
-		<div class="sectietitel">De volgende vragen kennen aandachtspunten:</div>
+		<div class="sectietitel">De volgende vragen betreffen aandachtspunten:</div>
 		<div id="oranjeSectie"></div>
 	</div>
  
 <div class="result-container">
-  <div class="sectietitel">De volgende vragen kennen verbeterpunten:</div>
+  <div class="sectietitel">De volgende vragen betreffen verbeterpunten:</div>
   <div id="roodSectie"></div>
 </div>
 
@@ -163,29 +163,84 @@
     vraag11: "In welke mate worden er vragen met open waarden gesteld die ook als multiple-choice vragen zouden kunnen worden gesteld?"
   };
 
+   const antwoordLabels = {
+    vraag1: {
+      red: "zelden tot nooit",
+      orange: "soms / af en toe",
+      green: "vaak / regelmatig"
+    },
+    vraag2: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+    },
+    vraag3: {
+      red: "zelden tot nooit",
+      orange: "soms / af en toe",
+      green: "vaak / regelmatig"
+    },
+    vraag4: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+    },
+    vraag5: {
+      red: "zelden tot nooit",
+      orange: "soms / af en toe",
+      green: "vaak / regelmatig"
+    }
+	vraag6: {
+      red: "zelden tot nooit",
+      orange: "soms / af en toe",
+      green: "vaak / regelmatig"
+    },
+    vraag7: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+    },
+    vraag8: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+    },
+    vraag9: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+    },
+    vraag10: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      red: "vaak / regelmatig"
+	},
+    vraag11: {
+      green: "zelden tot nooit",
+      orange: "soms / af en toe",
+      orange: "vaak / regelmatig"
+    }
+  };
+
   const antwoorden = JSON.parse(localStorage.getItem("analyse")) || {};
 
   for (let key in antwoorden) {
-    const antwoord = antwoorden[key];
+    const value = antwoorden[key];
     const tekst = vragen[key] || key;
+    const label = antwoordLabels[key]?.[value] || "Onbekend";
 
     const div = document.createElement("div");
-    div.classList.add("bevinding");
+    div.classList.add("bevinding", value); // value is green, orange of red
+    div.innerHTML = `<strong>${tekst}</strong><br><em>Uw gegeven antwoord: ${label}</em>`;
 
-    if (antwoord === "green") {
-      div.classList.add("green");
-      div.innerHTML = `<strong>${tekst}</strong><br><em>U gegeven antwoord: zelden tot nooit</em>`;
+    if (value === "green") {
       document.getElementById("groenSectie").appendChild(div);
-    } else if (antwoord === "orange") {
-      div.classList.add("orange");
-      div.innerHTML = `<strong>${tekst}</strong><br><em>U gegeven antwoord: soms / af en toe</em>`;
+    } else if (value === "orange") {
       document.getElementById("oranjeSectie").appendChild(div);
-    } else if (antwoord === "red") {
-      div.classList.add("red");
-      div.innerHTML = `<strong>${tekst}</strong><br><em>U gegeven antwoord: vaak / regelmatig</em>`;
+    } else if (value === "red") {
       document.getElementById("roodSectie").appendChild(div);
     }
   }
+</script>
 </script>
 
 <script>
