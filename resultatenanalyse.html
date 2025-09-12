@@ -80,6 +80,15 @@
     .btn:hover {
       background-color: #00509e;
     }
+	
+	.result-container {
+			background-color: #e6f0fa;
+			border-radius: 12px;
+			padding: 24px;
+			margin-top: 30px;
+			margin-bottom: 40px;
+		}
+	
   </style>
 </head>
 <body>
@@ -91,20 +100,21 @@
           <p>U heeft alle analyse-vragen beantwoord. U heeft nu inzichtelijk waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck. U kunt nagaan op welke onderdelen een beslisboom aangepast kan worden. Op deze manier kunt u de dienstverlening aan initiatiefnemers naar een hoger niveau brengen.</p>  
         </p>
 
-  <div id="groenSectie">
-    <div class="sectietitel">De volgende vragen zijn op orde:</div>
-    <!-- JS vult hier de groene bevindingen -->
-  </div>
+  <div class="result-container">
+		<div class="sectietitel">De volgende vragen zijn op orde:</div>
+		<div id="groenSectie"></div>
+	</div>
 
-  <div id="oranjeSectie">
-    <div class="sectietitel">De volgende vragen kennen aandachtspunten:</div>
-    <!-- JS vult hier de oranje bevindingen -->
-  </div>
+	<div class="result-container">
+		<div class="sectietitel">De volgende vragen kennen aandachtspunten:</div>
+		<div id="oranjeSectie"></div>
+	</div>
+ 
+<div class="result-container">
+  <div class="sectietitel">De volgende vragen kennen verbeterpunten:</div>
+  <div id="roodSectie"></div>
+</div>
 
-  <div id="roodSectie">
-    <div class="sectietitel">De volgende vragen kennen verbeterpunten:</div>
-    <!-- JS vult hier de rode bevindingen -->
-  </div>
 
   
 	<p><strong>Organisatorische randvoorwaarden voor het verbeteren van beslisbomen.</strong></p>
