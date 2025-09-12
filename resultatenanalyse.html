@@ -241,6 +241,36 @@
       document.getElementById("roodSectie").appendChild(div);
     }
   }
+  
+  const groenSectie = document.getElementById("groenSectie");
+if (!groenSectie.hasChildNodes()) {
+  const leeg = document.createElement("p");
+  leeg.innerText = "Er zijn geen vragen die op orde zijn.";
+  leeg.style.fontStyle = "italic";
+leeg.style.color = "#666";
+leeg.style.marginTop = "8px";
+  groenSectie.appendChild(leeg);
+}
+
+const oranjeSectie = document.getElementById("oranjeSectie");
+if (!oranjeSectie.hasChildNodes()) {
+  const leeg = document.createElement("p");
+  leeg.innerText = "Er zijn geen vragen met aandachtspunten.";
+  leeg.style.fontStyle = "italic";
+leeg.style.color = "#666";
+leeg.style.marginTop = "8px";
+  oranjeSectie.appendChild(leeg);
+}
+
+const roodSectie = document.getElementById("roodSectie");
+if (!roodSectie.hasChildNodes()) {
+  const leeg = document.createElement("p");
+  leeg.innerText = "Er zijn geen vragen met verbeterpunten.";
+  leeg.style.fontStyle = "italic";
+leeg.style.color = "#666";leeg.style.marginTop = "8px";
+  roodSectie.appendChild(leeg);
+}
+  
 </script>
 </script>
 
