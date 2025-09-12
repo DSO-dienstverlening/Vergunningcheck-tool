@@ -231,7 +231,7 @@
 
     const inleidingsParagraaf = document.querySelector("#pdf-content > p");
   inleidingsParagraaf.textContent =
-    `U heeft ${ingevuld} van de ${totaalVragen} analysevragen beantwoord. ` +
+    `U heeft <strong>${ingevuld} van de ${totaalVragen}</strong> analysevragen beantwoord. ` +
     `Op basis van uw antwoorden ziet u hieronder waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck.`;
 
   for (let key in antwoorden) {
