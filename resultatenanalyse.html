@@ -230,7 +230,7 @@
   const ingevuld = Object.values(antwoorden).filter(v => v).length;
 
     const inleidingsParagraaf = document.querySelector("#pdf-content > p");
-  inleidingsParagraaf.textContent =
+  inleidingsParagraaf.innerHTML =
     `U heeft <strong>${ingevuld} van de ${totaalVragen}</strong> analysevragen beantwoord. ` +
     `Op basis van uw antwoorden ziet u hieronder waar er voor uw organisatie verbeterkansen liggen bij het gebruik van beslisbomen voor de vergunningcheck.`;
 
