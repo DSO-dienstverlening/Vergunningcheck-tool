@@ -63,10 +63,27 @@
         .btn:hover {
             background-color: #00509e;
         }
+		.sidebar-logo {
+			position: fixed;
+			top: 50%;
+			left: 40px;
+			transform: translateY(-50%); /* centreert verticaal */
+			width: 220px;
+		}
+		.sidebar-logo img {
+			width: 100%;
+			height: auto;
+			border-radius: 8px; /* ronde hoeken */
+			box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+		}
     </style>
 </head>
 <body>
     
+	<div class="sidebar-logo">
+    <img src="Logo_aanpakkertool_voor_vergunningchecks.png" alt="Aanpakkertool logo">
+</div>
+	
     <div class="container">
         <h1>Analyse – 2/2 </h1>
         <form action="resultatenanalyse.html">
