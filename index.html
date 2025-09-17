@@ -25,12 +25,16 @@
     }
 
     .landing-logo {
-    width: 400px;          
-    height: auto;
-    margin: 20px auto;
-    display: block;
-    border-radius: 12px;   
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+  width: min(400px, 80%);
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  background: #fff;        /* zorgt dat de shadow beter ‘pakt’ */
+  padding: 8px;            /* klein kaart-effect rond je logo */
+}
+
 }
 
 
@@ -67,7 +71,7 @@
 
   <div class="landing">
     
-   <img src="Logo_aanpakkertool_voor_vergunningchecks.png" alt="Aanpakkertool logo">
+    <img class="landing-logo" src="Logo_aanpakkertool_voor_vergunningchecks.png" alt="Aanpakkertool logo">
  
     <p>
       	Welkom bij de tool die is ontwikkeld voor iedereen die streeft naar het verbeteren en dienstverlenend maken van beslisbomen. De tool focust zich op bestaande vergunningchecks binnen het Digitaal Stelsel Omgevingswet (DSO).
